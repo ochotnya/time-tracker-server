@@ -2,27 +2,35 @@ const express = require("express");
 const ActivityType = require("../models/activityTypeModel");
 const router = express.Router();
 
+//read all activity types
 router.get("/", async (req, res) => {
   console.log("in GET");
   try {
     const types = await ActivityType.find();
     console.log(types);
+    res.status(200).json({ types });
   } catch (error) {}
 });
 
+//create new activity type
 router.post("/", async (req, res) => {
+  console.log("craeting new type...");
+  console.log(req.body.name);
   try {
+    //create new object
     const newActivity = new ActivityType({
       name: req.body.name,
       color: req.body.color,
+      desc: req.body.desc,
     });
 
+    //check if activity with this name already exists
     const exists = await (
       await ActivityType.find({ name: newActivity.name })
     ).length;
     if (exists) {
       return res
-        .status(500)
+        .status(200)
         .json({ message: `Activity ${newActivity.name} already exists!` });
     }
     newActivity.save();

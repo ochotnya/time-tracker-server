@@ -10,6 +10,11 @@ const activityTypeSchema = new mongoose.Schema({
     required: true,
     default: "red",
   },
+  desc: {
+    type: String,
+    required: false,
+    default: "",
+  },
 });
 
 module.exports =
