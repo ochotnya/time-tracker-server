@@ -9,7 +9,7 @@ const port = 3000;
 dbConnect();
 app.use(
   cors({
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "DELETE"],
     origin: "*",
   })
 );

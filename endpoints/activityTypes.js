@@ -41,4 +41,10 @@ router.post("/", async (req, res) => {
     return res.status(500).json({ message: `Server error` });
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  console.log("deleting: ", req.params.id);
+  await ActivityType.deleteOne({ _id: req.params.id });
+  res.status(200).json({ message: "Type deleted!" });
+});
 module.exports = router;
