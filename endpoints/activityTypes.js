@@ -4,18 +4,14 @@ const router = express.Router();
 
 //read all activity types
 router.get("/", async (req, res) => {
-  console.log("in GET");
   try {
     const types = await ActivityType.find();
-    console.log(types);
     res.status(200).json({ types });
   } catch (error) {}
 });
 
 //create new activity type
 router.post("/", async (req, res) => {
-  console.log("craeting new type...");
-  console.log(req.body.name);
   try {
     //create new object
     const newActivity = new ActivityType({
@@ -43,7 +39,6 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  console.log("deleting: ", req.params.id);
   await ActivityType.deleteOne({ _id: req.params.id });
   res.status(200).json({ message: "Type deleted!" });
 });

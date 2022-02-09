@@ -21,8 +21,9 @@ app.get("/", (req, res) => {
 });
 
 const activityTypesRouter = require("./endpoints/activityTypes");
-
+const activitiesRouter = require("./endpoints/activities");
 app.use("/types", activityTypesRouter);
+app.use("/activities", activitiesRouter);
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
